@@ -1,0 +1,29 @@
+
+export PATH="/usr/local/bin:${PATH}"
+
+alias vim='mvim -v'
+alias dev='cd /usr/local/dev'
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+
+parse_git_branch()
+{
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+# http://www.ibm.com/developerworks/linux/library/l-tip-prompt/
+
+proml()
+{
+  local     BLACK_ON_GREEN="\e[30;42m";
+  local         PURPLE="\e[0;35m";
+  local       WHITE="\e[0;37m";
+  local      CYAN="\e[0;36m";
+
+  PS1="$CYAN\u$PURPLE\w$BLACK_ON_GREEN\$(parse_git_branch)\e[0m \t \$ $WHITE";
+  PS2='> ';
+  PS4='+ '
+}
+
+proml
