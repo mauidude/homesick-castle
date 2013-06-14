@@ -1,6 +1,12 @@
 
 export PATH="/usr/local/bin:${PATH}"
 
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+# tell grep to highlight matches
+export GREP_OPTIONS='--color=auto'
+# alias
+alias ls='ls -FGal'
+
 alias vim='mvim -v'
 alias dev='cd /usr/local/dev'
 alias be='bundle exec'
