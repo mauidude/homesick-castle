@@ -3,6 +3,8 @@ export PATH="/usr/local/bin:${PATH}"
 
 alias vim='mvim -v'
 alias dev='cd /usr/local/dev'
+alias be='bundle exec'
+alias bes='bundle exec spec'
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
