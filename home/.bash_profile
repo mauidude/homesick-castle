@@ -8,9 +8,10 @@ export GREP_OPTIONS='--color=auto'
 alias ls='ls -FGal'
 
 alias vim='mvim -v'
-alias dev='cd /usr/local/dev'
 alias be='bundle exec'
-alias bes='bundle exec spec'
+alias bes='bundle exec rspec'
+
+export EDITOR=vim
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
@@ -25,9 +26,9 @@ parse_git_branch()
 proml()
 {
   local     BLACK_ON_GREEN="\e[30;42m";
-  local         PURPLE="\e[0;35m";
-  local       WHITE="\e[0;37m";
-  local      CYAN="\e[0;36m";
+  local     PURPLE="\e[0;35m";
+  local     WHITE="\e[0;37m";
+  local     CYAN="\e[0;36m";
 
   PS1="$CYAN\u$PURPLE\w$BLACK_ON_GREEN\$(parse_git_branch)\e[0m \$ $WHITE";
   PS2='> ';
