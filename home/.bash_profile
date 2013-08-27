@@ -10,6 +10,8 @@ alias ls='ls -FGal'
 alias vim='mvim -v'
 alias be='bundle exec'
 alias bes='bundle exec rspec'
+alias bec='bundle exec cucumber'
+alias beg='bundle exec guard'
 
 export EDITOR=vim
 
