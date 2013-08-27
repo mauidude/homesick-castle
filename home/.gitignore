@@ -5,3 +5,7 @@ st = status
 br = branch
 hist = log --prety=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 
+# OS Generated Files #
+.DS_Store
+.DS_Store?
+.Trashes
