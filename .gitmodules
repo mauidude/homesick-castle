@@ -16,3 +16,7 @@
 [submodule "home/.vim/bundle/vim-slim"]
   path = home/.vim/bundle/vim-slim
   url = git@github.com:slim-template/vim-slim
+[submodule "home/.vim/bundle/vim-golang"]
+  path = home/.vim/bundle/vim-golang
+  url = git@github.com:jnwhiteh/vim-golang
+
