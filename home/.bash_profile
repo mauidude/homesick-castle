@@ -4,6 +4,9 @@ export PATH="/usr/local/bin:${PATH}"
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 # tell grep to highlight matches
 export GREP_OPTIONS='--color=auto'
+
+export GOPATH=/usr/local/go/
+
 # alias
 alias ls='ls -FGal'
 
