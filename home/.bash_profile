@@ -1,5 +1,5 @@
 
-export PATH="/usr/local/bin:${PATH}"
+export PATH="/usr/local/bin:/usr/local/share/python:${PATH}"
 
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 # tell grep to highlight matches
@@ -41,3 +41,7 @@ proml()
 }
 
 proml
+
+if [ -f ~/.bashrc ]; then
+  source ~/.bashrc
+fi
