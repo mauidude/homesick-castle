@@ -1,0 +1,16 @@
+export GOPATH=`pwd`
+echo "export GOPATH=$GOPATH"
+ 
+ export GOBIN=$GOPATH/bin
+ echo "export GOBIN=\$GOPATH/bin"
+  
+export PATH=$GOBIN:$PATH
+echo "export PATH=$GOBIN:\$PATH"
+   
+    
+if [ ! -x bin/gocode ]; then
+  echo "installing gocode into $GOBIN"
+  go get github.com/nsf/gocode
+fi
+             
+exec "${@:-$SHELL}"

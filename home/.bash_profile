@@ -38,7 +38,7 @@ proml()
   local     WHITE="\e[0;37m";
   local     CYAN="\e[0;36m";
 
-  PS1="$CYAN\u$PURPLE\w$BLACK_ON_GREEN\$(parse_git_branch)\e[0m \$ $WHITE";
+  PS1="\[$CYAN\]\u\[$PURPLE\]\w\[$BLACK_ON_GREEN\]\$(parse_git_branch)\e[0m \$ \[$WHITE\]";
   PS2='> ';
   PS4='+ '
 }
