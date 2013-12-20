@@ -19,7 +19,7 @@ filetype plugin on    " Enable filetype-specific plugins
 set background=dark
 se t_Co=16
 let g:solarized_termcolors=256
-colorscheme codeschool
+colorscheme solarized
 
  set rtp+=~/.vim/bundle/vundle/
  call vundle#rc()
