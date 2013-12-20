@@ -1,4 +1,3 @@
-
 export PATH="/usr/local/bin:/usr/local/share/python:${PATH}"
 
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
@@ -52,3 +51,7 @@ function __git_branch {
 
 PS1="\u@$WHITE\h$CLR:$GREEN\W$YELLOW\$(__git_branch) $BLUE\$(__env_ps1)$YELLOW\n\$$CLR "
 
+# Load host-specific bash_profile
+HOSTNAME=`hostname`
+LOCALPROFILE=~/.bash_profile.$HOSTNAME
+[ -f $LOCALPROFILE ] && source "$LOCALPROFILE"
