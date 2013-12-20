@@ -52,6 +52,3 @@ function __git_branch {
 
 PS1="\u@$WHITE\h$CLR:$GREEN\W$YELLOW\$(__git_branch) $BLUE\$(__env_ps1)$YELLOW\n\$$CLR "
 
-if [ -f ~/.bashrc ]; then
-  source ~/.bashrc
-fi
