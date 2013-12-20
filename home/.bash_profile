@@ -5,7 +5,7 @@ export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 # tell grep to highlight matches
 export GREP_OPTIONS='--color=auto'
 
-export GOPATH=/usr/local/go/
+#export GOPATH=/usr/local/go/
 
 # alias
 alias ls='ls -FGal'
@@ -20,30 +20,37 @@ export EDITOR=vim
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
-fi
+source ~/.scripts/git-completion.sh
 
-parse_git_branch()
-{
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+RED="\[\e[0;31m\]"
+YELLOW="\[\033[0;33m\]"
+GREEN="\[\e[0;32m\]"
+WHITE="\[\033[0;37m\]"
+BLUE="\[\e[0;34m\]"
+CLR="\[\033[0m\]"
+
+function __env_ps1 {
+  if [ ! -z "$ENV" ]; then
+    ENVS="$ENVS ENV=$ENV"
+  fi
+
+  if [ ! -z "$GOPATH" ]; then
+    ENVS="$ENVS GOPATH=$GOPATH"
+  fi
+
+  if [ ! -z "$PYTHONPATH" ]; then
+    ENVS="$ENVS PYTHONPATH=$PYTHONPATH"
+  fi
+
+  echo -e $ENVS | sed -e "s/:$//" -e "s|/usr/|/u/|g" -e "s|/local/|/l/|g" -e "s|$HOME|~|g"
 }
 
-# http://www.ibm.com/developerworks/linux/library/l-tip-prompt/
-
-proml()
-{
-  local     BLACK_ON_GREEN="\e[30;42m";
-  local     PURPLE="\e[0;35m";
-  local     WHITE="\e[0;37m";
-  local     CYAN="\e[0;36m";
-
-  PS1="\[$CYAN\]\u\[$PURPLE\]\w\[$BLACK_ON_GREEN\]\$(parse_git_branch)\e[0m \$ \[$WHITE\]";
-  PS2='> ';
-  PS4='+ '
+function __git_branch {
+  BRANCH=$(__git_ps1)
+  echo -e $BRANCH | sed -e 's/^ *//g'
 }
 
-proml
+PS1="\u@$WHITE\h$CLR:$GREEN\W$YELLOW\$(__git_branch) $BLUE\$(__env_ps1)$YELLOW\n\$$CLR "
 
 if [ -f ~/.bashrc ]; then
   source ~/.bashrc
