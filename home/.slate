@@ -3,6 +3,9 @@ config defaultToCurrentScreen true
 # maximize window
 bind /:cmd move screenOriginX;screenOriginY screenSizeX;screenSizeY
 
+# maximize window on opposite monitor
+bind /:cmd,shift move screenOriginX;screenOriginY screenSizeX;screenSizeY next
+
 # right half window
 bind .:cmd move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY
 
