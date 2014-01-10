@@ -15,6 +15,8 @@ alias bes='bundle exec rspec'
 alias bec='bundle exec cucumber'
 alias beg='bundle exec guard'
 
+alias json='python -m json.tool'
+
 export EDITOR=vim
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
@@ -39,6 +41,10 @@ function __env_ps1 {
 
   if [ ! -z "$PYTHONPATH" ]; then
     ENVS="$ENVS PYTHONPATH=$PYTHONPATH"
+  fi
+
+  if [ ! -z "$rvm_ruby_string" ]; then
+    ENVS="$ENVS RUBY=$rvm_ruby_string"
   fi
 
   echo -e $ENVS | sed -e "s/:$//" -e "s|/usr/|/u/|g" -e "s|/local/|/l/|g" -e "s|$HOME|~|g"
