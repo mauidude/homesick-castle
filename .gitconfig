@@ -1,0 +1,18 @@
+[user]
+	name = Shane Andrade
+	email = shane.andrade@gmail.com
+[color]
+	ui = auto
+[core]
+	excludesfile = /Users/shaneandrade/.gitignore_global
+	autocrlf = input
+[github]
+	user = mauidude
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --prety=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  p = push
+  f = fetch
