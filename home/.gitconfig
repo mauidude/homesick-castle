@@ -16,3 +16,7 @@
   hist = log --prety=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   p = push
   f = fetch
+[credential]
+	helper = osxkeychain
+[push]
+	default = current

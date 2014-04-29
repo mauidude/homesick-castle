@@ -6,11 +6,5 @@ echo "export GOPATH=$GOPATH"
   
 export PATH=$GOBIN:$PATH
 echo "export PATH=$GOBIN:\$PATH"
-   
-    
-if [ ! -x bin/gocode ]; then
-  echo "installing gocode into $GOBIN"
-  go get github.com/nsf/gocode
-fi
              
 exec "${@:-$SHELL}"
