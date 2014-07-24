@@ -20,3 +20,5 @@
 	helper = osxkeychain
 [push]
 	default = current
+[pull]
+	default = current
