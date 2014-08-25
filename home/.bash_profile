@@ -14,6 +14,7 @@ alias be='bundle exec'
 alias bes='bundle exec rspec'
 alias bec='bundle exec cucumber'
 alias beg='bundle exec guard'
+alias g='git'
 
 alias json='python -m json.tool'
 
