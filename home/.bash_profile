@@ -11,10 +11,11 @@ alias ls='ls -FGal'
 
 alias vim='mvim -v'
 alias be='bundle exec'
-alias bes='bundle exec rspec'
-alias bec='bundle exec cucumber'
+alias bes='bundle exec spring rspec'
+alias bec='bundle exec spring cucumber'
 alias beg='bundle exec guard'
 alias g='git'
+#alias docker='cd $DOCKER_HOME; vagrant up; vagrant ssh;'
 
 alias json='python -m json.tool'
 
