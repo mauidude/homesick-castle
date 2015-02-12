@@ -1,6 +1,4 @@
 [user]
-	name = Shane Andrade
-	email = shane.andrade@gmail.com
 [color]
 	ui = auto
 [core]
@@ -25,3 +23,9 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+[user]
+	name = Shane Andrade
+	email = shane.andrade@sendgrid.com
+	initials = ska
+[url "git@github.com:"]
+	insteadOf = https://github.com/
