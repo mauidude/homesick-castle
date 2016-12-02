@@ -22,6 +22,7 @@ alias json='python -m json.tool'
 export EDITOR=vim
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
 source ~/.scripts/git-completion.sh
 
@@ -37,7 +38,9 @@ function __env_ps1 {
     ENVS="$ENVS ENV=$ENV"
   fi
 
-  if [ ! -z "$GOPATH" ]; then
+  if [ ! -z "$gvm_go_name" ]; then
+    ENVS="$ENVS GO=$gvm_go_name@$gvm_pkgset_name"
+  elif [ ! -z "$GOPATH" ]; then
     ENVS="$ENVS GOPATH=$GOPATH"
   fi
 
