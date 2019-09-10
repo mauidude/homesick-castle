@@ -52,6 +52,11 @@ function __env_ps1 {
     ENVS="$ENVS RUBY=$rvm_ruby_string"
   fi
 
+  if [ -x "$(command -v kubectl)" ]; then
+    kbenv=$(kubectl config current-context)
+    ENVS="$ENVS kube=$kbenv"
+  fi
+
   echo -e $ENVS | sed -e "s/:$//" -e "s|/usr/|/u/|g" -e "s|/local/|/l/|g" -e "s|$HOME|~|g"
 }
 
@@ -66,4 +71,8 @@ PS1="\u@$WHITE\h$CLR:$GREEN\W$YELLOW\$(__git_branch) $BLUE\$(__env_ps1)$YELLOW\n
 HOSTNAME=`hostname`
 LOCALPROFILE=~/.bash_profile.$HOSTNAME
 [ -f $LOCALPROFILE ] && source "$LOCALPROFILE"
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
 
