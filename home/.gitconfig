@@ -25,9 +25,12 @@
 	smudge = git-media-smudge %f
 [user]
 	name = Shane Andrade
-	email = shane.andrade@sendgrid.com
+	email = shane@clickhouse.com
 	initials = ska
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+	insteadOf = https://github.com/
 [url "git@bitbucket.org:"]
 	insteadOf = https://bitbucket.org/
+[url "git@github.com"]
+	insteadOf = https://github.com/

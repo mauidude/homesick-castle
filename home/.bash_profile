@@ -52,9 +52,14 @@ function __env_ps1 {
     ENVS="$ENVS RUBY=$rvm_ruby_string"
   fi
 
-  if [ -x "$(command -v kubectl)" ]; then
-    kbenv=$(kubectl config current-context)
+  if [ -n "$(command -v kubectl)" ]; then
+    kbenv=$(kubectl config current-context 2>/dev/null)
     ENVS="$ENVS kube=$kbenv"
+  fi
+
+  if [ -x "$(command -v dataplanectl)" ]; then
+    dpenv=$(dataplanectl current-context 2>/dev/null)
+    ENVS="$ENVS dataplane=$dpenv"
   fi
 
   echo -e $ENVS | sed -e "s/:$//" -e "s|/usr/|/u/|g" -e "s|/local/|/l/|g" -e "s|$HOME|~|g"
@@ -66,6 +71,7 @@ function __git_branch {
 }
 
 PS1="\u@$WHITE\h$CLR:$GREEN\W$YELLOW\$(__git_branch) $BLUE\$(__env_ps1)$YELLOW\n\$$CLR "
+#PS1="\s@$WHITEmacbook$CLR:$GREEN\W$YELLOW\$(__git_branch)\n\$$CLR "
 
 # Load host-specific bash_profile
 HOSTNAME=`hostname`
@@ -76,3 +82,4 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 
+. "$HOME/.cargo/env"
