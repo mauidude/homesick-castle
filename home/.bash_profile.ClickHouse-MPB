@@ -1,0 +1,72 @@
+export HOMEBREW_NO_ENV_HINTS=1
+export BASH_SILENCE_DEPRECATION_WARNING=1
+#export DOCKER_DEFAULT_PLATFORM=linux/amd64  
+
+# needed for pyenv install commands
+# https://github.com/pyenv/pyenv/issues/2143#issuecomment-1069223994
+#export CC=/opt/homebrew/bin/gcc-11
+
+alias kubectl=kubecolor
+alias kb=kubectl
+alias kube=kubectl
+#source <(kubectl completion bash)
+#complete -o default -F __start_kubectl kb
+#complete -o default -F __start_kubectl kube
+
+alias dp='dataplanectl'
+#source <(dataplanectl completion bash)
+
+alias dc='docker-compose'
+alias d='docker'
+
+alias argo="argocd --grpc-web"
+alias argo-fwd="kubectl port-forward svc/argocd-server -n argocd 8080:443"
+alias argo-password='kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo'
+alias argo-login='argocd login localhost:8080 --insecure --username admin --password $(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo)'
+alias aws-login='aws sso login --sso-session base-session'
+
+export KUBECONFIG=~/.kube/config
+
+export HELM_EXPERIMENTAL_OCI=1
+export GOPRIVATE=github.com/clickhouse/*
+export GO111MODULE=auto
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH=$PATH:/opt/homebrew/bin
+export PATH=$PATH:/Users/shane/Library/Python/3.8/bin
+
+export GOPATH=$HOME/go
+
+# do not set as it is using toolchain version
+#export GOROOT=$(brew --prefix golang)/libexec
+#export GOROOT=$GOPATH/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.5.darwin-arm64
+export GOTOOLCHAIN=auto
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+
+function ecr-login() {
+  aws ecr get-login-password --profile=Deployment --region us-west-2 | docker login --username AWS --password-stdin 609927696493.dkr.ecr.us-west-2.amazonaws.com
+}
+
+function kube_dp_az_skew() {
+    local SPOKEN_NAME="${1:?"arg 1: spoken name cannot be empty"}"
+    local CONTEXT="${2}"
+    local ARGS=()
+
+    if [[ -n "${CONTEXT}" ]]; then
+        ARGS+=(--context "${CONTEXT}")
+    fi
+
+    mapfile -t PVCS < <(kubectl get pvc -n "ns-${SPOKEN_NAME}" -o yaml "${ARGS[@]}" | yq '.items[].spec.volumeName')
+
+    for PVC in "${PVCS[@]}"; do
+        kubectl get pv "$PVC" -n "ns-${SPOKEN_NAME}" -o yaml "${ARGS[@]}" |
+            yq '.spec.claimRef.name + " = " + .spec.nodeAffinity.required.nodeSelectorTerms[0].matchExpressions[0].values[0]'
+    done
+}
+
+# pyenv settings
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+#if [ -n "$PS1" -a -n "$BASH_VERSION" ]; then source ~/.bashrc; fi
+
